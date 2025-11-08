@@ -123,7 +123,7 @@ export const NodeItem = ({
         <div className="flex items-center gap-3 mt-2">
           <button
             onClick={handleToggleReplies}
-            className="text-xs text-gray-500 hover:text-blue-600 flex items-center gap-1"
+            className="text-xs text-gray-500 hover:text-blue-600 flex items-center gap-1 cursor-pointer"
           >
             <ChevronRight
               className={`w-3 h-3 transition-transform ${
@@ -136,7 +136,7 @@ export const NodeItem = ({
           {user && user._id && (
             <button
               onClick={() => onReply(node)}
-              className="text-xs text-blue-600 hover:text-blue-700 flex items-center gap-1"
+              className="text-xs text-blue-600 hover:text-blue-700 flex items-center gap-1 cursor-pointer"
             >
               <Plus className="w-3 h-3" />
               Add Reply
@@ -169,7 +169,7 @@ export const NodeItem = ({
                   <button
                     onClick={loadMoreReplies}
                     disabled={isLoading}
-                    className="text-xs text-blue-600 hover:text-blue-700 disabled:opacity-50 flex items-center gap-1"
+                    className="text-xs text-blue-600 hover:text-blue-700 disabled:opacity-50 flex items-center gap-1 cursor-pointer"
                   >
                     {isLoading ? (
                       <>

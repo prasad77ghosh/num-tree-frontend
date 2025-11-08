@@ -62,6 +62,7 @@ export const RootNodeCard = ({
               font-medium 
               flex items-center justify-center gap-2 
               shadow-sm hover:shadow-md
+              cursor-pointer
             "
             >
               <Plus className="w-4 h-4" />
