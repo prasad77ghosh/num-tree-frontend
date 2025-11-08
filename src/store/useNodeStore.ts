@@ -30,7 +30,7 @@ export const useTreeStore = create<TreeState>((set) => ({
     })),
   setLoadingRoots: (loading) => set({ loadingRoots: loading }),
 
-  setSelectedRoot: (rootId) => set({ selectedRoot: rootId }),
+  setSelectedRoot: (rootNode) => set({ selectedRoot: rootNode }),
   setTreeData: (rootNode, nodes, cursor, hasMore) =>
     set({
       rootNode,
@@ -57,20 +57,12 @@ export const useTreeStore = create<TreeState>((set) => ({
       return { expandedNodes: newExpanded };
     }),
 
-
-    setNodeReplies: (parentId, replies, cursor, hasMore) =>
-  set((state) => ({
-    nodeReplies: { ...state.nodeReplies, [parentId]: replies },
-    repliesCursors: { ...state.repliesCursors, [parentId]: cursor },
-    hasMoreReplies: { ...state.hasMoreReplies, [parentId]: hasMore },
-  })),
-
-  // setNodeReplies: (parentId, replies, cursor, hasMore) =>
-  //   set((state) => ({
-  //     nodeReplies: { ...state.nodeReplies, [parentId]: replies },
-  //     repliesCursors: { ...state.repliesCursors, [parentId]: cursor },
-  //     hasMoreReplies: { ...state.hasMoreReplies, [parentId]: hasMore },
-  //   })),
+  setNodeReplies: (parentId, replies, cursor, hasMore) =>
+    set((state) => ({
+      nodeReplies: { ...state.nodeReplies, [parentId]: replies },
+      repliesCursors: { ...state.repliesCursors, [parentId]: cursor },
+      hasMoreReplies: { ...state.hasMoreReplies, [parentId]: hasMore },
+    })),
 
   addNodeReplies: (parentId, replies, cursor, hasMore) =>
     set((state) => ({
@@ -102,24 +94,10 @@ export const useTreeStore = create<TreeState>((set) => ({
         },
       };
     }),
-  // addNewNode: (node) =>
-  //   set((state) => {
-  //     // ✅ If replying directly to the root (no parentId)
-  //     if (!node.parentId) {
-  //       return { treeNodes: [node, ...state.treeNodes] };
-  //     }
 
-  //     // ✅ If replying to a child node
-  //     return {
-  //       nodeReplies: {
-  //         ...state.nodeReplies,
-  //         [node.parentId]: [...(state.nodeReplies[node.parentId] || []), node],
-  //       },
-  //     };
-  //   }),
   reset: () =>
-    set({
-      selectedRoot: null,
+    set((state) => ({
+      ...state,
       treeNodes: [],
       rootNode: null,
       treeCursor: null,
@@ -129,5 +107,5 @@ export const useTreeStore = create<TreeState>((set) => ({
       repliesCursors: {},
       hasMoreReplies: {},
       loadingReplies: {},
-    }),
+    })),
 }));

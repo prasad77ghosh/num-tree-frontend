@@ -19,7 +19,7 @@ const LeftBar = ({ roots }: { roots: Root[] }) => {
   
   const select_root = async (root: Root) => {
     reset();
-    setSelectedRoot(root);
+    setSelectedRoot({ ...root });
   };
 
   

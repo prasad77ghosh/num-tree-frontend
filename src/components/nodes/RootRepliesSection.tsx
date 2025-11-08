@@ -27,8 +27,14 @@ const RootRepliesSection: React.FC<Props> = ({ onReply }) => {
   const loading = rootId ? loadingReplies[rootId] : false;
   const cursor = rootId ? repliesCursors[rootId] : null;
 
+  useEffect(() => {
+    console.log("lskkljaksljdkljaskljk")
+    console.log(selectedRoot)
+  }, [selectedRoot])
+
   /** Load initial replies */
   const loadReplies = useCallback(async () => {
+    // console.log("LKLKSALDKSJDKLJS--")
     if (!selectedRoot || loadingRef.current) return;
     loadingRef.current = true;
     useTreeStore.getState().setLoadingReplies(selectedRoot._id, true);
@@ -47,7 +53,7 @@ const RootRepliesSection: React.FC<Props> = ({ onReply }) => {
       loadingRef.current = false;
       useTreeStore.getState().setLoadingReplies(selectedRoot._id, false);
     }
-  }, [selectedRoot?._id]);
+  }, [selectedRoot]);
 
   /** Load more replies on scroll bottom */
   const loadMoreReplies = useCallback(async () => {
@@ -70,7 +76,7 @@ const RootRepliesSection: React.FC<Props> = ({ onReply }) => {
       loadingRef.current = false;
       useTreeStore.getState().setLoadingReplies(selectedRoot._id, false);
     }
-  }, [selectedRoot?._id, hasMore, cursor]);
+  }, [selectedRoot, hasMore, cursor]);
 
   /** Check scroll position to trigger loading */
   const handleScroll = useCallback(() => {
