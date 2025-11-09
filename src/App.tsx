@@ -1,9 +1,9 @@
-import RegisterPage from "@/pages/RegisterPage";
-import LoginPage from "@/pages/LoginPage";
-import { Route, Routes } from "react-router";
+import { Route, Routes, Navigate } from "react-router";
 import { Toaster } from "./components/ui/sonner";
-import MathTreeApp from "./pages/HomePage";
 import { Navbar } from "./components/layout/Navbar";
+import MathTreeApp from "./pages/HomePage";
+import LoginPage from "@/pages/LoginPage";
+import RegisterPage from "@/pages/RegisterPage";
 
 export default function App() {
   return (
@@ -14,6 +14,9 @@ export default function App() {
           <Route path="/" element={<MathTreeApp />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+
+          {/* 👇 Fallback route */}
+          <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </main>
       <Toaster position="top-right" richColors closeButton={true} />
